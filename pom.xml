@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.15.RELEASE</version>
+		<version>2.2.5.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -25,33 +25,40 @@
 	</properties>
 
 	<dependencies>
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -61,28 +68,40 @@
 		<!-- https://mvnrepository.com/artifact/org.webjars/webjars-locator -->
 		<dependency>
 		    <groupId>org.webjars</groupId>
-		    <artifactId>webjars-locator</artifactId>
-<!-- 		    <version>0.34</version> -->
+		    <!-- <artifactId>webjars-locator</artifactId> was discontinued in Spring Boot 2.X.X -->
+		    <artifactId>webjars-locator-core</artifactId>
 		</dependency>
+		
 		<dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>bootstrap</artifactId>
-		    <version>4.1.3</version>
+		    <version>4.3.1</version>
 		</dependency>
+		
 		<dependency>
 		    <groupId>org.webjars.bower</groupId>
 		    <artifactId>open-iconic</artifactId>
 		    <version>1.1.1</version>
 		</dependency>
+		
 		<dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>jquery</artifactId>
-		    <version>3.3.1-1</version>
+		    <version>3.4.1</version>
 		</dependency>
+		
 		<dependency>
 		    <groupId>org.webjars.bower</groupId>
 		    <artifactId>jquery-mask-plugin</artifactId>
-		    <version>1.14.15</version>
+		    <version>1.14.16</version>
+		</dependency>
+		
+		<!-- Enables users to build layouts and reusable templates, 
+			in order to improve code reuse -->
+		
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
 		
 	</dependencies>
