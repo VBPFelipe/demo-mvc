@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -44,8 +45,46 @@ public class CargoController {
 		return "redirect:/cargos/cadastrar";
 	}
 	
+	 
+	/**
+	 * @PathVariable -Consegue recuperar da URL o Id
+	 * @return
+	 */
+	@GetMapping("/editar/{id}")
+	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("cargo", cargoService.buscarPorID(id) );
+		return "cargo/cadastro";
+	}
+	
+	/**
+	 * 
+	 * @param cargo
+	 * @param attr - RedirectAttributes pois no método há uma ação de redirecionar
+	 * @return
+	 */
+	@PostMapping("/editar")
+	public String editar(Cargo cargo, RedirectAttributes attr) {
+		cargoService.editar(cargo);
+		attr.addFlashAttribute("success", "Cargo alterado com sucesso.");
+		return "redirect:/cargos/cadastrar";
+	}
+	
 	@ModelAttribute("departamentos")
 	public List<Departamento> listaDeDepartamentos() {
 		return departamentoService.buscarTodos();
 	}
+	
+	@GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, ModelMap model) {
+				
+		if(cargoService.cargoTemFuncionarios(id)) 
+			model.addAttribute("fail", "Cargo não removido. Possui funcionário(s) vinculado(s).");
+		else {
+			cargoService.excluir(id);
+			model.addAttribute("Success", "Cargo removido com sucesso.");
+		}
+		
+		return listar(model);
+	}
+	
 }
