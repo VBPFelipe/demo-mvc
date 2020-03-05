@@ -39,9 +39,9 @@
                     <div class="collapse" id="collapseNome">
 
                         <nav class="navbar navbar-light bg-light">
-                            <form class="form-inline" method="GET" action="/funcionarios/buscar/nome">
+                            <form class="form-inline" method="GET" th:action="@{/funcionarios/buscar/nome}">
                                 <input class="form-control mr-sm-2" type="search" placeholder="nome" aria-label="Search"
-                                       name="nome" />
+                                       th:name="nome" />
                                 <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
                             </form>
                         </nav>
@@ -54,9 +54,13 @@
                     <div class="collapse" id="collapseCargo">
 
                         <nav class="navbar navbar-light bg-light">
-                            <form class="form-inline" method="GET" action="/funcionarios/buscar/cargo">
-                                <select class="form-control mr-sm-2" name="cargo" aria-label="Search">
+                            <form class="form-inline" method="GET" th:action="@{/funcionarios/buscar/cargo}">
+                                <select class="form-control mr-sm-2" th:name="id" aria-label="Search">
                                     <option value="">Cargo</option>
+                                    <option th:each="c : ${cargos}" 
+                                    		th:value="${c.id}" th:text="${c.nome}">
+                                   		Cargo
+                               		</option>
                                 </select>
                                 <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
                             </form>
@@ -70,11 +74,11 @@
                     <div class="collapse" id="collapseData">
 
                         <nav class="navbar navbar-light bg-light">
-                            <form class="form-inline" method="GET" action="/funcionarios/buscar/data">
+                            <form class="form-inline" method="GET" th:action="@{/funcionarios/buscar/data}">
                                 <input class="form-control mr-sm-2" type="date" aria-label="Search"
-                                       name="entrada" />
+                                       th:name="entrada" />
                                 <input class="form-control mr-sm-2" type="date" aria-label="Search"
-                                       name="saida" />
+                                       th:name="saida" />
                                 <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
                             </form>
                         </nav>

@@ -1,5 +1,7 @@
 package com.felipe.curso.springboot.services;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +46,25 @@ public class FuncionarioServiceImpl implements FuncionarioService{
 		return dao.findAll();
 	}
 
+	@Override
+	public List<Funcionario> buscaPorNome(String nome) {
+		return dao.findByNome(nome);
+	}
+
+	@Override
+	public List<Funcionario> buscaPorCargo(Long id) {
+		return dao.findByCargo(id);
+	}
+
+	@Override
+	public List<Funcionario> buscaPorDatas(LocalDate entrada, LocalDate saida) {
+		if(entrada != null && saida != null)
+				return dao.findByDataEntradaDataSaida(entrada, saida);
+		else if(entrada != null)
+				return dao.findByDataEntrada(entrada);
+		else if(saida != null)
+			return dao.findByDataSaida(saida);
+		else		
+			return new ArrayList<Funcionario>();
+	}	
 }
