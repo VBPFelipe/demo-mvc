@@ -69,5 +69,10 @@ public class FuncionarioController {
 		return "redirect:/funcionarios/cadastrar";
 	}
 	
-	
+	@GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
+		funcionarioService.excluir(id);
+		attr.addFlashAttribute("success", "Funcionario removido com sucesso");
+		return "redirect:/funcionarios/listar";
+	}
 }
