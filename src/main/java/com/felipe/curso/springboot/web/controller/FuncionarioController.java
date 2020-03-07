@@ -10,7 +10,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +25,7 @@ import com.felipe.curso.springboot.domain.Funcionario;
 import com.felipe.curso.springboot.domain.UF;
 import com.felipe.curso.springboot.services.CargoService;
 import com.felipe.curso.springboot.services.FuncionarioService;
+import com.felipe.curso.springboot.web.validator.FuncionarioValidator;
 
 @Controller
 @RequestMapping(path = "/funcionarios")
@@ -33,6 +36,20 @@ public class FuncionarioController {
 	
 	@Autowired
 	private CargoService cargoService;
+	
+	/**
+	 * 
+	 * 
+	 * @InitBinder - Faz com que este seja o primeiro método da classe a ser executado
+	 * Ativa a validação e o Spring MVC vai na classe FuncionarioValidator antes de liberar
+	 * o acesso da requisição ao método Salvar/editar;
+	 * 
+	 * @param binder -  
+	 */
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.addValidators( new FuncionarioValidator() );
+	}
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Funcionario funcionario) {
@@ -77,7 +94,7 @@ public class FuncionarioController {
 	public String editar(@Valid Funcionario funcionario, BindingResult result, RedirectAttributes attr) {
 		
 		if(result.hasErrors())
-			return "funcionario/cafastro";
+			return "funcionario/cadastro";
 		
 		funcionarioService.editar(funcionario);
 		attr.addFlashAttribute("success", "Funcionario alterado com sucesso");
