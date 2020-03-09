@@ -14,10 +14,10 @@
 	
 	<!-- Bootstrap core CSS -->
 	
-	<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 	<!-- Custom styles for this template -->
-	<link href="/css/style.css" rel="stylesheet" />
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
 		
 </head>
 <body class="text-center">
@@ -32,7 +32,7 @@
 		
 		<div>
 			<span th:text="${message}"></span><br/><br/>
-			<a class="btn btn-primary" type="button" href="javascript:history.back()">Voltar à página anterior</a>
+			<a class="btn btn-primary" type="button" th:href="@{javascript:history.back()}">Voltar à página anterior</a>
 		</div>
 		
 	</div>
