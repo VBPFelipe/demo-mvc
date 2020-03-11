@@ -59,7 +59,10 @@
 				id = 'btn_departamentos/excluir/{id}'
 				url = ['btn', 'departamentos/excluir/3']
 			*/
-			url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+			url = ""+
+				/* "http://localhost:8080"+ */
+				"/"+
+				$(this).attr('id').split("_")[1];
 		});
 		
 		$('#ok_confirm').click(function() {
